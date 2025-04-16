@@ -1,0 +1,39 @@
+<div class="card">
+    <!-- Display 'Sale' badge if the product is on sale -->
+    <div *ngIf="product.isSale"
+        class="bg-danger rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+        style="width: 35px; height: 35px; position: absolute; left: 0;">
+        <p class="text-white mb-0 small">Sale</p>
+    </div>
+    <!-- Display 'New' badge if the product is new -->
+    <div *ngIf="product.isNew"
+        class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
+        style="width: 35px; height: 35px; position: absolute; left: 0;">
+        <p class="text-white mb-0 small">New</p>
+    </div>
+    <!-- Display product image -->
+    <img [src]="product.imageUrl" class="card-img-top" [alt]="product.productName" />
+    <div class="card-body pb-1">
+        <!-- Display product name and price -->
+        <div class="d-flex justify-content-between mb-3">
+            <h5 class="mb-0">{{product.productName}}</h5>
+            <h5 class="text-dark mb-0">${{product.price}}</h5>
+        </div>
+        <!-- Display product rating as stars and add to cart button based on availability -->
+        <div class="d-flex justify-content-between mb-0">
+            <div class="text-warning">
+                <!-- Display rating stars -->
+                <i [class]="product.rating > 0 ? 'fa fa-star' : 'fa fa-star-o'"></i>
+                <i [class]="product.rating > 1 ? 'fa fa-star' : 'fa fa-star-o'"></i>
+                <i [class]="product.rating > 2 ? 'fa fa-star' : 'fa fa-star-o'"></i>
+                <i [class]="product.rating > 3 ? 'fa fa-star' : 'fa fa-star-o'"></i>
+                <i [class]="product.rating > 4 ? 'fa fa-star' : 'fa fa-star-o'"></i>
+            </div>
+            <!-- Display 'Out of Stock' button -->
+            <button *ngIf="product.availableQty === 0" type="button" class="btn btn-secondary">Out of Stock</button>
+            <!-- Display 'Add to Cart' button -->
+            <button *ngIf="product.availableQty > 0" type="button" class="btn btn-success"
+                (click)="addToCart(product)">Add to Cart</button>
+        </div>
+    </div>
+</div>

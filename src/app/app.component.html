@@ -1,0 +1,100 @@
+<nav *ngIf="showNavbar" class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+      <!-- Left elements -->
+      <div class="d-flex align-items-center">
+          <!-- Brand name -->
+          <a class="navbar-brand" [routerLink]="['/home']">
+              Electronics Store
+          </a>
+          <!-- Links -->
+          <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                  <a class="nav-link text-white" [routerLink]="['/home']">Viewed</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link text-white" [routerLink]="['/order-history']">Orders</a>
+              </li>
+          </ul>
+      </div>
+
+      <!-- Right elements -->
+      <div class="d-flex align-items-center">
+          <!-- Cart Icon -->
+          <a class="text-white me-3" (click)="showCart()">
+              <i class="fa fa-shopping-cart"></i>
+          </a>
+          <!-- Cart Dropdown Menu -->
+          <div [class]="isCartVisible ? 'dropdown-menu dropdown-menu-end show' : 'dropdown-menu dropdown-menu-end'"
+              style="position: absolute; right: 13px; top: 60px;" aria-labelledby="navbarDropdownMenuAvatar">
+              <div class="row">
+                  <!-- Cart Header -->
+                  <div class="col-8">
+                      <h6>Cart Items</h6>
+                  </div>
+                  <div class="col-4 text-end">
+                      <i class="fa fa-close p-2" (click)="showCart()"></i>
+                  </div>
+              </div>
+
+              <!-- Cart Items Table -->
+              <table class="table table-sm">
+                  <tbody>
+                      <!-- Display each cart item -->
+                      <tr *ngFor="let item of cartItems; let i = index; trackBy: trackByIndex">
+                          <td>
+                              <div class="rounded"
+                                  style="background-image: url({{item.imageUrl}}); width: 60px; height: 60px; background-size: cover;">
+                              </div>
+                          </td>
+                          <td class="align-middle text-left">{{item.productName}}</td>
+                          <td class="align-middle text-right">${{item.price}}</td>
+                          <td class="align-middle text-center">
+                              <a (click)="removeProduct(i)" data-toggle="modal" data-title="Delete your product?">
+                                  <i class="fa fa-trash"></i>
+                              </a>
+                          </td>
+                      </tr>
+                      <!-- Display total quantity and price -->
+                      <tr>
+                          <td colspan="2" class="align-middle text-left"><strong>Quantity</strong></td>
+                          <td colspan="2" class="align-middle text-right">{{getTotalQuantity()}}</td>
+                      </tr>
+                      <tr>
+                          <td colspan="2" class="align-middle text-left"><strong>Price</strong></td>
+                          <td colspan="2" class="align-middle text-right">${{getTotalPrice()}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+              <div class="d-grid gap-2">
+                  <button class="btn btn-primary" type="button" (click)="onPlaceOrder()" [disabled]="cartItems.length === 0">
+                    Place Order
+                  </button>
+              </div>
+          </div>
+          <!-- User Dropdown if user is logged in -->
+          <div *ngIf="userName$ | async as userName">
+            <button class="btn btn-light dropdown-toggle text-primary" type="button" (click)="showMembershipMenu()">
+            {{ userName }}
+            </button>
+            <ul [class]="isMembershipMenuVisible ? 'dropdown-menu dropdown-menu-end show':'dropdown-menu dropdown-menu-end'">
+              <li>
+                <div class="dropdown-item-text">
+                  <ng-container *ngIf="memberStatus$ | async as memberStatus; else loadingStatus">
+                          <strong>Points:</strong>{{ memberStatus?.points || 'N/A'}}<br>
+                          <strong>Rank:</strong>{{ memberStatus?.rank || 'N/A'}}
+                      </ng-container>
+                      <ng-template #loadingStatus>
+                          Loading membership status...
+                      </ng-template>
+                  </div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="onLogout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</nav>
+<!-- Router outlet for displaying routed components -->
+<router-outlet></router-outlet>

@@ -1,0 +1,42 @@
+<!-- Section with a minimum height of 100vh and a primary background color -->
+<section class="bg-primary" style="min-height: 100vh;">
+    <div class="container-fluid h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-sm-6 text-white">
+          <!-- Store branding -->
+          <div class="px-5 ms-xl-4">
+            <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4 text-info"></i>
+            <span class="h1 fw-bold mb-0">Electronics Store</span>
+          </div>
+          <!-- Registration form container -->
+          <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+            <form style="width: 23rem;">
+              <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Register</h3>
+              <!-- Username field -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="username">Username</label>
+                <input name="username" [(ngModel)]="userRegistrationInfo.username" type="text" id="username" class="form-control form-control-lg" />
+              </div>
+              <!-- Email address field -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="email">Email address</label>
+                <input name="email" [(ngModel)]="userRegistrationInfo.email" type="email" id="email" class="form-control form-control-lg" />
+              </div>
+              <!-- Password field -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="password">Password</label>
+                <input name="password" [(ngModel)]="userRegistrationInfo.password" type="password" id="password" class="form-control form-control-lg" />
+              </div>
+              <!-- Register button -->
+              <div class="pt-1 mb-4">
+                <button class="btn btn-light text-primary btn-lg" (click)="onRegister()" type="button">Register</button>
+              </div>
+              <!-- Link to login page -->
+              <p>Already have an account? <a class="text-white" [routerLink]="['/login']">Login here</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

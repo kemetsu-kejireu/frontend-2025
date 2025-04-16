@@ -1,0 +1,85 @@
+.order-history-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 20px;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  padding: 20px;
+}
+
+.no-orders {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.order-item {
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.order-item h5 {
+  margin-top: 0;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.order-item ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.order-item li,
+.order-item .summary-item {
+  margin-bottom: 5px;
+}
+
+.order-number {
+  margin-bottom: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 10px;
+}
+
+.pagination span {
+  margin: 0 10px;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}

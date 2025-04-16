@@ -1,0 +1,38 @@
+<!-- Section with a minimum height of 100vh and a primary background color -->
+<section class="bg-primary" style="min-height: 100vh;">
+    <div class="container-fluid h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-sm-6 text-white">
+          <!-- Store branding -->
+          <div class="px-5 ms-xl-4">
+            <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4 text-info"></i>
+            <span class="h1 fw-bold mb-0">Electronics Store</span>
+          </div>
+          <!-- Login form container -->
+          <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+            <form style="width: 23rem;">
+              <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
+              <!-- Email field -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="email">Email address</label>
+                <input name="email" [(ngModel)]="userLoginInfo.email" type="email" id="email" class="form-control form-control-lg" />
+              </div>
+              <!-- Password field -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="password">Password</label>
+                <input name="password" [(ngModel)]="userLoginInfo.password" type="password" id="password" class="form-control form-control-lg" />
+              </div>
+              <!-- Login button -->
+              <div class="pt-1 mb-4">
+                <button class="btn btn-light text-primary btn-lg" (click)="onLogin()" type="button">Login</button>
+              </div>
+              <!-- Links to forgot password and register pages -->
+              <p>Forgot your password? <a class="text-white" [routerLink]="['/forgot-password']">Reset it here</a></p>
+              <p>Don't have an account? <a class="text-white" [routerLink]="['/register']">Register here</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

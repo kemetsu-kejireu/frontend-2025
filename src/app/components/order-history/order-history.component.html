@@ -1,0 +1,41 @@
+<div class="order-history-container">
+  <h2>Order History</h2>
+
+  <div *ngIf="loading" class="loading-spinner">
+    <div class="spinner"></div>
+    <p>Loading order history...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+    <button (click)="loadOrders()">Try Again</button>
+  </div>
+
+  <div *ngIf="!loading && !error">
+    <div *ngIf="orders.length === 0" class="no-orders">
+      <p>No order history available.</p>
+    </div>
+
+    <div *ngFor="let order of orders" class="order-item">
+      <h4 class="order-number">Order #{{ order.orderNumber }}</h4>
+      
+      <h5>Order Summary: </h5>
+      <p class="summary-item">Date: {{ formatDate(order.orderDate) }}</p>
+      <p class="summary-item">Total Price: {{ order.totalPrice | currency }}</p>
+      <p class="summary-item">Total Quantity: {{ order.totalQuantity }}</p>
+      
+      <h5>Items: </h5>
+      <ul>
+        <li *ngFor="let item of order.orderItems">
+          {{ item.productName }}: {{ item.price | currency }}
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="orders.length > 0" class="pagination">
+      <button class="btn btn-secondary" (click)="previousPage()" [disabled]="currentPage === 0">Previous</button>
+      <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+      <button class="btn btn-success" (click)="nextPage()" [disabled]="currentPage === totalPages -1">Next</button>
+    </div>
+  </div>
+</div>
