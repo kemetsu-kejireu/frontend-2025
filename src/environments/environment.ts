@@ -1,7 +1,7 @@
 export const environment = {
   supabaseUrl: 'XXX',
   supabaseAnonKey: 'XXX',
-  signUpRedirectUrl: 'http://localhost:4200/login',
-    resetPasswordRedirectUrl: 'http://localhost:4200/reset-password',
+  signUpRedirectUrl: 'http://localhost/login',
+    resetPasswordRedirectUrl: 'http://localhost/reset-password',
     apiUrl: 'http://localhost:8080/api'
 };
